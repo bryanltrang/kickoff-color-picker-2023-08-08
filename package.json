@@ -8,11 +8,18 @@
     "run-migrations": "knex migrate:latest"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.0.0",
     "axios": "^1.4.0",
     "knex": "^2.5.1",
     "next": "13.4.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3"
   }
 }

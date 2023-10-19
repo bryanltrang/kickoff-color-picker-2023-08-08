@@ -1,7 +1,8 @@
-import Welcome from "../components/welcome";
+import PaletteForm from "../components/colorForm";
+
 
 const Home = () => {
-  return <Welcome />;
+  return <PaletteForm/>
 };
 
 export default Home;
