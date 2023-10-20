@@ -36,11 +36,20 @@ const addPalette = async(req, res) => {
 // update palette and colors in the DB
 const updatePalette = async(req, res) => {
   try {
-    const [ id, color ] = req.body;
+    const { updateId, newColors } = req.body;
+    
+    await knex('colors').delete().where('palette_id', updateId)
 
-  // query the DB for palette with id
+    for (let color of newColors) {
+      await knex('colors').insert({
+        palette_id: updateId,
+        RED: color.RED,
+        GREEN: color.GREEN,
+        BLUE: color.BLUE
+      });
+    }
 
-  // update the db with the new color from req body
+    res.send('Palette colors updated successfully.')
  } catch (err) {
     res.status(500).json({ error: `An error occured when trying to updatePalette ${err}` });
  }
@@ -51,7 +60,7 @@ export default async (req, res) => {
       await getPalettes(req, res);
   } else if (req.method === "POST") {
       await addPalette(req, res);
-  } else if (req.method === "PATCH") {
+  } else if (req.method === "PUT") {
      await updatePalette(req, res);
   } else {
      res.status(404).json({ error: `${req.method} endpoint does not exist` });

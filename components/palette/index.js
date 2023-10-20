@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 export default function Palette({palette, handleDeletePalette, handleGetPalette}) {
  const {id, name, colors} = palette;

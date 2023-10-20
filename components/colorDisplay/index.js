@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios";
 import Palette from '../palette';
 
-export default function ColorDisplay({ palettes, fetchPalettes, setColors, setPaletteName}) {
+export default function ColorDisplay({ palettes, fetchPalettes, setColors, setCurrentPalette}) {
 
   const handleGetPalette = async(paletteId) => {
     try {
       const {status, data} = await axios.get(`/api/palettes/${paletteId}`)
       if (status === 200) {
-        setPaletteName(data.name)
+        setCurrentPalette({name: data.name, id: data.id})
         setColors(data.colors)
       } else {
         throw new Error("Error connecting to server");
